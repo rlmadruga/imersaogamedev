@@ -1,9 +1,20 @@
 class Animation {
-  constructor(matrix, image, x, y, widthI, heightI, spriteWidth, spriteHeight) {
+  constructor(
+    matrix,
+    image,
+    x,
+    y,
+    variationY,
+    widthI,
+    heightI,
+    spriteWidth,
+    spriteHeight
+  ) {
     this.matrix = matrix;
     this.image = image;
     this.x = x;
-    this.y = y;
+    this.variationY = variationY;
+    this.y = y - this.variationY;
     this.widthI = widthI;
     this.heightI = heightI;
     this.spriteWidth = spriteWidth;

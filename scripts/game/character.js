@@ -4,24 +4,25 @@ class Character extends Animation {
     image,
     x,
     y,
+    variationY,
     widthI,
     heightI,
     spriteWidth,
     spriteHeight,
     characterJump
   ) {
-    super(matrix, image, x, y, widthI, heightI, spriteWidth, spriteHeight);
+    super(matrix, image, x, y, variationY, widthI, heightI, spriteWidth, spriteHeight);
 
     this.characterJump = characterJump;
-    this.initialY = y;
+    this.initialY = y - this.variationY;
     this.jumpVelocity = 0;
-    this.gravity = 3;
+    this.gravity = 6;
     this.doubleJump = 2;
   }
 
   jump() {
     if (this.doubleJump > 0) {
-      this.jumpVelocity = -30;
+      this.jumpVelocity = -50;
       this.characterJump.play();
       this.doubleJump--;
     }
