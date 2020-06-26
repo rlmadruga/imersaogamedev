@@ -5,6 +5,7 @@ let imageEnTroll;
 let imageEnFlying;
 let imageGameOver;
 let imageStart;
+let imageLife;
 let fontStart;
 let button;
 let background;
@@ -17,6 +18,8 @@ let enFlying;
 let score;
 let isGameOver;
 let start;
+let mapJSON;
+let life;
 let game;
 
 let activeScene = "start";

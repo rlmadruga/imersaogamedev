@@ -9,30 +9,19 @@ class Enemy extends Animation {
     heightI,
     spriteWidth,
     spriteHeight,
-    speed,
-    delay
+    speed
   ) {
-    super(
-      matrix,
-      image,
-      x,
-      y,
-      variationY,
-      widthI,
-      heightI,
-      spriteWidth,
-      spriteHeight
-    );
+    super(matrix, image, x, y, variationY, widthI, heightI, spriteWidth, spriteHeight);
 
     this.speed = speed;
-    this.delay = delay;
-    this.x = width + this.delay;
+    this.x = width;
   }
 
   move() {
     this.x -= this.speed;
-    if (this.x < -this.widthI - this.delay) {
-      this.x = width;
-    }
+  }
+
+  spawn() {
+    this.x = width;
   }
 }

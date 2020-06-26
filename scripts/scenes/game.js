@@ -1,12 +1,14 @@
 class Game {
   constructor() {
-    this.activeEnemy = 0;
+    this.index = 0;
+    this.map = mapJSON.map;
   }
 
   setup() {
     isGameOver = false;
     background = new Background(imageBackground, 3);
     score = new Score();
+    life = new Life(mapJSON.config.maxLife, mapJSON.config.initialLife);
 
     character = new Character(
       characterMatrix,
@@ -31,8 +33,7 @@ class Game {
       52,
       104,
       104,
-      10,
-      100
+      10
     );
 
     const enTroll = new Enemy(
@@ -45,8 +46,7 @@ class Game {
       200,
       400,
       400,
-      10,
-      100
+      10
     );
 
     const enFlying = new Enemy(
@@ -59,8 +59,7 @@ class Game {
       75,
       200,
       150,
-      10,
-      100
+      10
     );
 
     enemyArr.push(enemy);
@@ -79,28 +78,35 @@ class Game {
     background.move();
     score.showScore();
     score.addScore();
+    life.draw();
     character.show();
     character.applyGravity();
 
-    const enemies = enemyArr[this.activeEnemy];
+    const line = this.map[this.index];
+    const enemies = enemyArr[line.enemy];
     const visibleEnemy = enemies.x < -enemies.widthI;
 
+    enemies.speed = line.speed;
     enemies.show();
     enemies.move();
 
     if (visibleEnemy) {
-      this.activeEnemy++;
-      if (this.activeEnemy > 2) {
-        this.activeEnemy = 0;
+      this.index++;
+      enemies.spawn();
+      if (this.index > this.map.length - 1) {
+        this.index = 0;
       }
-      enemies.speed = parseInt(random(10, 30));
     }
 
     if (character.collision(enemies)) {
-      backgroundMusic.stop();
-      isGameOver = true;
-      image(imageGameOver, windowWidth / 2 - 250, windowHeight / 2);
-      noLoop();
+      life.loseLife();
+      character.invencible();
+      if (life.lives === 0) {
+        backgroundMusic.stop();
+        isGameOver = true;
+        image(imageGameOver, windowWidth / 2 - 250, windowHeight / 2);
+        noLoop();
+      }
     }
   }
 }

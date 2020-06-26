@@ -6,8 +6,8 @@ class Score {
   showScore() {
     textAlign(RIGHT);
     fill("#FFF");
-    textSize(150);
-    text(parseInt(this.score), width - 30, 120);
+    textSize(100);
+    text(parseInt(this.score), width - 30, 100);
   }
 
   addScore() {

@@ -7,6 +7,8 @@ function preload() {
   imageEnTroll = loadImage("/assets/assets/imagens/inimigos/troll.png");
   imageEnFlying = loadImage("/assets/assets/imagens/inimigos/gotinha-voadora.png");
   imageGameOver = loadImage("/assets/assets/imagens/assets/game-over.png");
+  imageLife = loadImage("/assets/assets/imagens/assets/coracao.png");
+  mapJSON = loadJSON("/map/map.json");
   backgroundMusic = loadSound("assets/assets/sons/trilha_jogo.mp3");
   characterJump = loadSound("/assets/assets/sons/somPulo.mp3");
 }
